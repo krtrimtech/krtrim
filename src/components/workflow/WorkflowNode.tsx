@@ -25,9 +25,9 @@ export const WorkflowNode: React.FC<WorkflowNodeProps> = ({
   className
 }) => {
   const sizeClasses = {
-    sm: 'w-16 h-16 text-xs',
-    md: 'w-24 h-24 text-sm',
-    lg: 'w-32 h-32 text-base'
+    sm: 'w-12 h-12 md:w-16 md:h-16 text-[10px] md:text-xs',
+    md: 'w-16 h-16 md:w-24 md:h-24 text-xs md:text-sm',
+    lg: 'w-20 h-20 md:w-32 md:h-32 text-sm md:text-base'
   };
 
   return (

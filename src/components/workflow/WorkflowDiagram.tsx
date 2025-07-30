@@ -22,7 +22,7 @@ const workflowNodes: WorkflowData[] = [
     id: 'ai-strategy',
     title: 'AI Strategy',
     description: 'Custom AI solutions',
-    icon: <Brain size={20} />,
+    icon: <Brain className="w-4 h-4 md:w-5 md:h-5" />,
     position: { x: 20, y: 30 },
     size: 'lg'
   },
@@ -30,7 +30,7 @@ const workflowNodes: WorkflowData[] = [
     id: 'chatbots',
     title: 'Chatbots',
     description: 'Intelligent conversations',
-    icon: <MessageSquare size={16} />,
+    icon: <MessageSquare className="w-3 h-3 md:w-4 md:h-4" />,
     position: { x: 50, y: 15 },
     size: 'md'
   },
@@ -38,7 +38,7 @@ const workflowNodes: WorkflowData[] = [
     id: 'voice-agents',
     title: 'Voice Agents',
     description: 'AI-powered voice',
-    icon: <Mic size={16} />,
+    icon: <Mic className="w-3 h-3 md:w-4 md:h-4" />,
     position: { x: 75, y: 35 },
     size: 'md'
   },
@@ -46,7 +46,7 @@ const workflowNodes: WorkflowData[] = [
     id: 'automation',
     title: 'Automation',
     description: 'Workflow optimization',
-    icon: <Zap size={16} />,
+    icon: <Zap className="w-3 h-3 md:w-4 md:h-4" />,
     position: { x: 45, y: 60 },
     size: 'md'
   },
@@ -54,7 +54,7 @@ const workflowNodes: WorkflowData[] = [
     id: 'saas-dev',
     title: 'SaaS Development',
     description: 'Full-stack solutions',
-    icon: <Code size={16} />,
+    icon: <Code className="w-3 h-3 md:w-4 md:h-4" />,
     position: { x: 25, y: 75 },
     size: 'md'
   },
@@ -62,7 +62,7 @@ const workflowNodes: WorkflowData[] = [
     id: 'integration',
     title: 'Integration',
     description: 'Seamless connections',
-    icon: <Target size={14} />,
+    icon: <Target className="w-2 h-2 md:w-3 md:h-3" />,
     position: { x: 70, y: 70 },
     size: 'sm'
   },
@@ -70,7 +70,7 @@ const workflowNodes: WorkflowData[] = [
     id: 'consulting',
     title: 'Consulting',
     description: 'Expert guidance',
-    icon: <Users size={14} />,
+    icon: <Users className="w-2 h-2 md:w-3 md:h-3" />,
     position: { x: 15, y: 50 },
     size: 'sm'
   },
@@ -78,7 +78,7 @@ const workflowNodes: WorkflowData[] = [
     id: 'ai-bots',
     title: 'AI Bots',
     description: 'Smart assistants',
-    icon: <Bot size={14} />,
+    icon: <Bot className="w-2 h-2 md:w-3 md:h-3" />,
     position: { x: 80, y: 15 },
     size: 'sm'
   }
@@ -110,6 +110,15 @@ export const WorkflowDiagram: React.FC = () => {
 
   const getNodeById = (id: string) => workflowNodes.find(node => node.id === id);
 
+  const getNodeSizeOffset = (size: 'sm' | 'md' | 'lg') => {
+    switch (size) {
+      case 'sm': return { width: 12, height: 12 }; // w-12 h-12 on mobile, w-16 h-16 on desktop
+      case 'md': return { width: 16, height: 16 }; // w-16 h-16 on mobile, w-24 h-24 on desktop  
+      case 'lg': return { width: 20, height: 20 }; // w-20 h-20 on mobile, w-32 h-32 on desktop
+      default: return { width: 16, height: 16 };
+    }
+  };
+
   const renderConnection = (connection: Connection) => {
     const fromNode = getNodeById(connection.from);
     const toNode = getNodeById(connection.to);
@@ -118,29 +127,36 @@ export const WorkflowDiagram: React.FC = () => {
 
     const isActive = activeConnections.includes(`${connection.from}-${connection.to}`);
     
-    // Calculate connection path
-    const x1 = fromNode.position.x + 6; // Approximate center offset
-    const y1 = fromNode.position.y + 6;
-    const x2 = toNode.position.x + 6;
-    const y2 = toNode.position.y + 6;
+    // Get proper node center coordinates accounting for node size
+    const fromSize = getNodeSizeOffset(fromNode.size);
+    const toSize = getNodeSizeOffset(toNode.size);
+    
+    // Calculate actual center positions (position is top-left, we need center)
+    const x1 = fromNode.position.x + (fromSize.width / 2);
+    const y1 = fromNode.position.y + (fromSize.height / 2);
+    const x2 = toNode.position.x + (toSize.width / 2);
+    const y2 = toNode.position.y + (toSize.height / 2);
 
-    // Create a curved path
-    const midX = (x1 + x2) / 2;
-    const midY = (y1 + y2) / 2;
-    const controlX = midX + (Math.random() - 0.5) * 10;
-    const controlY = midY + (Math.random() - 0.5) * 10;
+    // Create a smooth curved path
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    // Control point for smooth curve
+    const controlX = x1 + dx * 0.5 + (dy * 0.3);
+    const controlY = y1 + dy * 0.5 - (dx * 0.3);
 
     return (
       <g key={`${connection.from}-${connection.to}`}>
         <path
           d={`M ${x1},${y1} Q ${controlX},${controlY} ${x2},${y2}`}
           className={`workflow-connection ${isActive ? 'active' : ''}`}
-          strokeDasharray={connection.animated ? "5,5" : undefined}
+          strokeDasharray={connection.animated ? "3,3" : undefined}
         >
-          {connection.animated && (
+          {connection.animated && isActive && (
             <animate
               attributeName="stroke-dashoffset"
-              values="0;10"
+              values="0;6"
               dur="1s"
               repeatCount="indefinite"
             />
@@ -149,6 +165,7 @@ export const WorkflowDiagram: React.FC = () => {
         <circle
           cx={x2}
           cy={y2}
+          r="1.5"
           className={`workflow-connection-dot ${isActive ? 'active' : ''}`}
         />
       </g>
@@ -156,9 +173,13 @@ export const WorkflowDiagram: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-96 mx-auto max-w-4xl">
+    <div className="relative w-full h-64 md:h-96 mx-auto max-w-4xl">
       {/* Background SVG for connections */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100">
+      <svg 
+        className="absolute inset-0 w-full h-full pointer-events-none" 
+        viewBox="0 0 100 100" 
+        preserveAspectRatio="none"
+      >
         {connections.map(renderConnection)}
       </svg>
       
