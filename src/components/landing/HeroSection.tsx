@@ -16,7 +16,7 @@ export const HeroSection = ({
         {/* Logo */}
         <div className="mb-6">
           <img 
-            src="images/logo.png" 
+            src="./images/logo.png" 
             alt="KRTRIM Logo" 
             className="w-20 h-20 mx-auto mb-4"
           />
