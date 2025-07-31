@@ -5,7 +5,7 @@
   
   **Unleash AI. Accelerate Growth.**
   
-  [![Deploy Status](https://github.com/krtrimtech/krtrim/workflows/Deploy%20to%20Google%20Cloud%20Storage/badge.svg)](https://github.com/krtrimtech/krtrim/actions)
+  [![Deploy Status](https://github.com/krtrimtech/krtrim/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)](https://github.com/krtrimtech/krtrim/actions)
   [![React](https://img.shields.io/badge/React-18.2.0-blue)](https://reactjs.org/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-orange)](https://tailwindcss.com/)
@@ -72,7 +72,7 @@ Transform businesses with AI-powered solutions that increase efficiency, reduce 
 - **ESLint** - Code linting and formatting
 - **PostCSS** - CSS processing and optimization
 - **GitHub Actions** - Automated CI/CD pipeline
-- **Google Cloud Storage** - Static hosting and CDN
+- **GitHub Pages** - Free static hosting with CDN
 
 ---
 
@@ -162,42 +162,48 @@ npm run type-check
 
 ## 🚀 Deployment
 
-### Automated Deployment (Recommended)
+### GitHub Pages (Recommended)
 
-The project includes automated CI/CD pipeline for Google Cloud Platform:
+The project is configured for automatic deployment to GitHub Pages:
 
-1. **Setup GCP Environment**
-   ```bash
-   chmod +x setup-gcp.sh
-   ./setup-gcp.sh
-   ```
+1. **Enable GitHub Pages**:
+   - Go to repository Settings → Pages
+   - Select "GitHub Actions" as source
+   - Save settings
 
-2. **Configure GitHub Secrets**
-   - `GCP_PROJECT_ID`: Your Google Cloud project ID
-   - `GCS_BUCKET_NAME`: Your storage bucket name
-   - `GCP_SA_KEY`: Service account key JSON
-
-3. **Deploy Automatically**
+2. **Deploy Automatically**:
    ```bash
    git add .
-   git commit -m "Deploy to production"
+   git commit -m "Deploy to GitHub Pages"
    git push origin main
    ```
 
-### Manual Deployment
+3. **Access Your Live App**:
+   ```
+   https://krtrimtech.github.io/krtrim/
+   ```
+
+### Benefits of GitHub Pages
+- ✅ **Free Hosting** for public repositories
+- ✅ **Automatic SSL** with HTTPS enabled
+- ✅ **Global CDN** for fast loading worldwide
+- ✅ **Custom Domain Support** for your brand
+- ✅ **Automatic Deployments** on every push
+
+For detailed instructions, see [GITHUB_PAGES.md](./GITHUB_PAGES.md).
+
+### Local Development Build
 
 ```bash
 # Build the application
 npm run build
 
-# Deploy to Google Cloud Storage
-gsutil -m rsync -r -d dist/ gs://your-bucket-name
+# Preview production build
+npm run preview
 
-# Set cache headers
-gsutil -m setmeta -h "Cache-Control:public, max-age=3600" gs://your-bucket-name/**
+# Test the build
+npm run test
 ```
-
-For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ---
 
