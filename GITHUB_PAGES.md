@@ -38,8 +38,10 @@ The deployment will happen automatically via GitHub Actions!
 
 After deployment, your app will be available at:
 ```
-https://krtrimtech.github.io/krtrim/
+https://krtrimtech.github.io/
 ```
+
+**Note**: This assumes your repository is named exactly as your GitHub username organization (krtrimtech). If your repository has a different name, the URL would be `https://krtrimtech.github.io/repository-name/`.
 
 ## 🔧 How It Works
 
@@ -109,7 +111,7 @@ The `.github/workflows/deploy.yml` file handles:
 - **Pages Settings**: Monitor domain and SSL status
 
 ### Useful Links
-- 🔗 **Live App**: https://krtrimtech.github.io/krtrim/
+- 🔗 **Live App**: https://krtrimtech.github.io/
 - 📊 **Actions**: https://github.com/krtrimtech/krtrim/actions
 - ⚙️ **Settings**: https://github.com/krtrimtech/krtrim/settings/pages
 
