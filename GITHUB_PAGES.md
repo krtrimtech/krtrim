@@ -4,17 +4,27 @@ This guide will help you deploy your KRTRIM app to GitHub Pages for free hosting
 
 ## 🚀 Quick Setup
 
-### 1. Enable GitHub Pages
+### 1. Enable GitHub Pages (REQUIRED FIRST STEP)
+
+**⚠️ IMPORTANT: You must enable GitHub Pages manually before the workflow can run successfully.**
 
 1. Go to your GitHub repository: `https://github.com/krtrimtech/krtrim`
 2. Click on **Settings** tab
 3. Scroll down to **Pages** section in the left sidebar
-4. Under **Source**, select **GitHub Actions**
-5. Save the settings
+4. Under **Source**, select **GitHub Actions** (not "Deploy from a branch")
+5. Click **Save**
 
-### 2. Deploy Your App
+### 2. Verify Repository Permissions
 
-Simply push your code to the main branch:
+Make sure your repository has the correct permissions:
+1. Go to **Settings** → **Actions** → **General**
+2. Under **Workflow permissions**, select **Read and write permissions**
+3. Check **Allow GitHub Actions to create and approve pull requests**
+4. Click **Save**
+
+### 3. Deploy Your App
+
+After enabling Pages, push your code to trigger deployment:
 
 ```bash
 git add .
