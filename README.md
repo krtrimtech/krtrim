@@ -180,7 +180,7 @@ The project is configured for automatic deployment to GitHub Pages:
 
 3. **Access Your Live App**:
    ```
-   https://krtrimtech.github.io/
+   https://krtrimtech.github.io/krtrim/
    ```
 
 ### Benefits of GitHub Pages

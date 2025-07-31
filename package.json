@@ -2,7 +2,7 @@
   "name": "krtrim",
   "private": true,
   "version": "0.0.0",
-  "homepage": ".",
+  "homepage": "https://krtrimtech.github.io/krtrim/",
   "type": "module",
   "scripts": {
     "dev": "vite",
