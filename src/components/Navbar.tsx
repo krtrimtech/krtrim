@@ -149,7 +149,7 @@ export const Navbar = () => {
           <nav className="flex items-center">
             <NavItem
               to="#"
-              icon={<img src="images/logo.png" alt="KRTRIM" className="w-5 h-5" />}
+              icon={<img src="/krtrim/images/logo.png" alt="KRTRIM" className="w-5 h-5" />}
               label="KRTRIM"
               active={['what', 'why', 'how'].includes(active)}
               onClick={() => {}}
