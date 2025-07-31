@@ -114,6 +114,11 @@ export default {
 				'node-glow': {
 					'0%, 100%': { opacity: '0.8' },
 					'50%': { opacity: '1' }
+				},
+				'gradient-flow': {
+					'0%': { 'background-position': '0% 50%' },
+					'50%': { 'background-position': '100% 50%' },
+					'100%': { 'background-position': '0% 50%' }
 				}
 			},
 			animation: {
@@ -130,7 +135,8 @@ export default {
 				'spin-x': 'spin-x 2s linear infinite',
 				'ripple': 'ripple 1s linear',
 				'float-gentle': 'float-gentle 4s ease-in-out infinite',
-				'node-glow': 'node-glow 3s ease-in-out infinite'
+				'node-glow': 'node-glow 3s ease-in-out infinite',
+				'gradient-flow': 'gradient-flow 4s ease-in-out infinite'
 			},
 			transitionTimingFunction: {
 				'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { LogIn, Search, Upload, User, Settings, LogOut, Moon, Sun, Table, Info, HelpCircle, Code } from 'lucide-react';
+import { Moon, Sun, Info, HelpCircle, Code } from 'lucide-react';
 import { useRippleEffect } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -12,7 +12,6 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { TooltipProvider } from '@/components/ui/tooltip';
 
@@ -148,7 +147,6 @@ export const Navbar = () => {
       <TooltipProvider>
         <header className="glass-panel fixed top-6 left-1/2 transform -translate-x-1/2 z-40 rounded-lg px-1 py-1">
           <nav className="flex items-center">
-            {/* Logo and Cortex with submenu */}
             <NavItem
               to="#"
               icon={<img src="/images/logo.png" alt="KRTRIM" className="w-5 h-5" />}
@@ -198,9 +196,7 @@ export const Navbar = () => {
                     Book Now
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>
-                  <p>Logout</p>
-                </TooltipContent>
+                
               </Tooltip>
             
           </nav>

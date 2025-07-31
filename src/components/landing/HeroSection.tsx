@@ -23,10 +23,19 @@ export const HeroSection = ({
         </div>
         
         {/* Title */}
-        <h1 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent md:text-7xl">
+        <h1
+          className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-300 via-orange-500 to-orange-600 bg-clip-text text-transparent md:text-7xl animate-gradient-flow"
+          style={{
+            backgroundSize: '200% 200%'
+          }}
+        >
           KRTRIM
         </h1>
-        <p className="text-2xl font-semibold text-muted-foreground mb-4">AI & Automation Agency</p>
+        <div className="mb-4 flex justify-center">
+          <span className="inline-block px-4 py-2 rounded-full text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary text-2xl font-semibold shadow-lg animate-pulse">
+            Unleash AI. Accelerate Growth.
+          </span>
+        </div>
         
         {/* Description */}
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in">

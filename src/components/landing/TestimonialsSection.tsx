@@ -61,7 +61,7 @@ export const TestimonialsSection = ({
     rating: number;
   }) => {
     return <div className="flex items-center gap-1 mb-2">
-        {[...Array(5)].map((_, i) => <Star key={i} size={16} className={i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"} />)}
+        {[...Array(5)].map((_, i) => <Star key={i} size={16} className={i < rating ? "text-orange-400 fill-orange-400" : "text-gray-300"} />)}
       </div>;
   };
   return <AnimatedTransition show={showTestimonials} animation="slide-up" duration={600}>
@@ -80,7 +80,7 @@ export const TestimonialsSection = ({
               <p className="text-lg font-medium mb-4">{testimonial.quote}</p>
               <div className="mt-4">
                 <p className="font-bold">{testimonial.name}</p>
-                <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                {/* <p className="text-sm text-muted-foreground">{testimonial.role}</p> */}
               </div>
             </Card>)}
         </div>

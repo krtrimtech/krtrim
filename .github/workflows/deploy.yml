@@ -1,0 +1,99 @@
+name: Deploy to Google Cloud Storage
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  NODE_VERSION: '18'
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GCS_BUCKET_NAME: ${{ secrets.GCS_BUCKET_NAME }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run tests
+      run: npm run test -- --coverage --watchAll=false
+      continue-on-error: true
+      
+    - name: Build application
+      run: npm run build
+      
+    - name: Setup Google Cloud CLI
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        project_id: ${{ env.GCP_PROJECT_ID }}
+        export_default_credentials: true
+        
+    - name: Configure gsutil
+      run: |
+        echo '${{ secrets.GCP_SA_KEY }}' > ${HOME}/gcloud-service-key.json
+        gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+        gcloud config set project ${{ env.GCP_PROJECT_ID }}
+        
+    - name: Deploy to Google Cloud Storage
+      run: |
+        # Remove old files from bucket (optional)
+        gsutil -m rm -r gs://${{ env.GCS_BUCKET_NAME }}/* || true
+        
+        # Upload new build files
+        gsutil -m rsync -r -d dist/ gs://${{ env.GCS_BUCKET_NAME }}/
+        
+        # Set cache control headers
+        gsutil -m setmeta -h "Cache-Control:public, max-age=31536000" gs://${{ env.GCS_BUCKET_NAME }}/assets/**
+        gsutil -m setmeta -h "Cache-Control:public, max-age=3600" gs://${{ env.GCS_BUCKET_NAME }}/index.html
+        gsutil -m setmeta -h "Cache-Control:public, max-age=3600" gs://${{ env.GCS_BUCKET_NAME }}/404.html
+        
+    - name: Set website configuration
+      run: |
+        gsutil web set -m index.html -e 404.html gs://${{ env.GCS_BUCKET_NAME }}
+        
+    - name: Make bucket publicly readable
+      run: |
+        gsutil iam ch allUsers:objectViewer gs://${{ env.GCS_BUCKET_NAME }}
+        
+    - name: Invalidate CDN Cache (if using Cloud CDN)
+      run: |
+        # Uncomment if you're using Cloud CDN
+        # gcloud compute url-maps invalidate-cdn-cache YOUR_URL_MAP_NAME --path="/*"
+      continue-on-error: true
+      
+    - name: Deployment Summary
+      run: |
+        echo "🚀 Deployment completed successfully!"
+        echo "📱 App URL: https://storage.googleapis.com/${{ env.GCS_BUCKET_NAME }}/index.html"
+        echo "🌐 Custom domain: Configure your CNAME to point to c.storage.googleapis.com"
+        echo "📊 Monitor: https://console.cloud.google.com/storage/browser/${{ env.GCS_BUCKET_NAME }}"
+        
+  notification:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Deployment Status
+      run: |
+        if [ "${{ needs.build-and-deploy.result }}" == "success" ]; then
+          echo "✅ Deployment successful!"
+          echo "The KRTRIM app is now live on Google Cloud Storage"
+        else
+          echo "❌ Deployment failed!"
+          echo "Check the logs for details"
+        fi

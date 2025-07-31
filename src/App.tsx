@@ -10,6 +10,7 @@ import HowPage from "./pages/HowPage";
 import WhyPage from "./pages/WhyPage";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
+import { Chatbot } from "./components/Chatbot";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +79,7 @@ const App = () => (
             <div className="min-h-screen">
               <Navbar />
               <AppRoutes />
+              <Chatbot />
             </div>
           </BrowserRouter>
         </TooltipProvider>

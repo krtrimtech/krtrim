@@ -11,21 +11,21 @@ const services = [{
   description: "Intelligent conversational AI that understands your business data and provides instant, accurate responses to customer queries 24/7.",
   icon: Bot,
   features: ["Custom knowledge base integration", "Multi-language support", "Analytics & insights", "Seamless website integration"],
-  calLink: "https://cal.com/krtrim/ai-chatbot-consultation"
+  calLink: "https://cal.com/krtrim/alpha-team"
 }, {
   team: "Meta Team",
   service: "Voice AI Agents",
   description: "Advanced voice assistants that handle customer calls, appointments, and support with natural human-like conversations.",
   icon: Mic,
   features: ["Natural voice synthesis", "Real-time conversation", "Call routing & scheduling", "CRM integration"],
-  calLink: "https://cal.com/krtrim/voice-agent-consultation"
+  calLink: "https://cal.com/krtrim/meta-team"
 }, {
   team: "Sigma Team",
   service: "Full-Stack SaaS Development",
   description: "Complete software solutions powered by AI. From concept to deployment, we build scalable SaaS products that drive growth.",
   icon: Code,
   features: ["AI-powered features", "Scalable architecture", "Modern tech stack", "Ongoing support"],
-  calLink: "https://cal.com/krtrim/saas-development-consultation"
+  calLink: "https://cal.com/krtrim/sigma-team"
 }];
 export const ServicesSection = ({
   show
