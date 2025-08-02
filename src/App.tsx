@@ -75,7 +75,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter basename="/krtrim">
+          <BrowserRouter>
             <div className="min-h-screen">
               <Navbar />
               <AppRoutes />
