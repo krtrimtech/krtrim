@@ -35,7 +35,9 @@ const HowPage = () => {
             </p>
             <div className="flex justify-center">
               <Button size="lg" className="rounded-full" asChild>
-                <Link to="/contact">Get in touch</Link>
+                <a href="https://discord.gg/7GDEykchFh" target="_blank" rel="noopener noreferrer">
+                  Join our Discord
+                </a>
               </Button>
             </div>
           </div>
