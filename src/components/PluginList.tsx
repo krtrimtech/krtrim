@@ -7,6 +7,8 @@ type Plugin = {
   shortDesc: string;
   downloadUrl: string;
   aboutUrl?: string;
+  repoOwner?: string;
+  repoName?: string;
 };
 
 const PLUGINS: Plugin[] = [
@@ -17,6 +19,8 @@ const PLUGINS: Plugin[] = [
     // Use GitHub archive zip for the main branch so users download directly from the repo
     downloadUrl: 'https://github.com/krtrimtech/wp-content-helper/archive/refs/heads/main.zip',
     aboutUrl: 'https://krtrimtech.github.io/wp-content-helper/',
+    repoOwner: 'krtrimtech',
+    repoName: 'wp-content-helper',
   },
 ];
 
