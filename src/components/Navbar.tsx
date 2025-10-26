@@ -166,6 +166,13 @@ export const Navbar = () => {
                 />
               ))}
             </NavItem>
+            <NavItem
+              to="/tool"
+              icon={<Code size={18} />}
+              label="Tools"
+              active={active === 'tools'}
+              onClick={() => handleNavItemClick('tools')}
+            />
             
             
             

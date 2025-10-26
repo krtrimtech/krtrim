@@ -10,6 +10,7 @@ import HowPage from "./pages/HowPage";
 import WhyPage from "./pages/WhyPage";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
+import ToolPage from "./pages/ToolPage";
 import { Chatbot } from "./components/Chatbot";
 
 const queryClient = new QueryClient();
@@ -53,6 +54,14 @@ const AppRoutes = () => {
         element={
           <PageTransition>
             <HowPage />
+          </PageTransition>
+        } 
+      />
+      <Route 
+        path="/tool" 
+        element={
+          <PageTransition>
+            <ToolPage />
           </PageTransition>
         } 
       />
