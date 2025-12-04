@@ -28,7 +28,7 @@ const PLUGINS: Plugin[] = [
     shortDesc: 'Comprehensive project management and bidding platform for solar companies. Creates a unified dashboard for Solar Clients, Solar Vendors, and Area Managers, with custom user roles.',
     // Use GitHub archive zip for the main branch so users download directly from the repo
     downloadUrl: 'https://github.com/krtrimtech/krtrim-solar-core/archive/refs/heads/main.zip',
-    aboutUrl: 'https://krtrimtech.github.io/krtrim-solar-core/',
+    aboutUrl: 'https://krtrimtech.github.io/Krtrim-Solar-Core/',
     repoOwner: 'krtrimtech',
     repoName: 'krtrim-solar-core',
   },
