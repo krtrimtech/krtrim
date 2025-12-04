@@ -12,17 +12,18 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import ToolPage from "./pages/ToolPage";
 import { Chatbot } from "./components/Chatbot";
+import WordpressToolPage from "./pages/ToolPage";
 
 const queryClient = new QueryClient();
 
 // Page transition wrapper
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
-  
+
   return (
     <div className="transition-opacity duration-300 animate-fade-in">
       {children}
@@ -33,46 +34,46 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route 
-        path="/" 
+      <Route
+        path="/"
         element={
           <PageTransition>
             <Index />
           </PageTransition>
-        } 
+        }
       />
-      <Route 
-        path="/why" 
+      <Route
+        path="/why"
         element={
           <PageTransition>
             <WhyPage />
           </PageTransition>
-        } 
+        }
       />
-      <Route 
-        path="/how" 
+      <Route
+        path="/how"
         element={
           <PageTransition>
             <HowPage />
           </PageTransition>
-        } 
+        }
       />
-      <Route 
-        path="/tool" 
+      <Route
+        path="/wordpress"
         element={
           <PageTransition>
-            <ToolPage />
+            <WordpressToolPage />
           </PageTransition>
-        } 
+        }
       />
-  
-      <Route 
-        path="*" 
+
+      <Route
+        path="*"
         element={
           <PageTransition>
             <NotFound />
           </PageTransition>
-        } 
+        }
       />
     </Routes>
   );
@@ -81,17 +82,17 @@ const AppRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <div className="min-h-screen">
-              <Navbar />
-              <AppRoutes />
-              <Chatbot />
-            </div>
-          </BrowserRouter>
-        </TooltipProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <div className="min-h-screen">
+            <Navbar />
+            <AppRoutes />
+            <Chatbot />
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );

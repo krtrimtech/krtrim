@@ -27,16 +27,16 @@ interface NavItemProps {
 
 const NavItem = ({ to, icon, label, active, onClick, hasSubmenu, children }: NavItemProps) => {
   const handleRipple = useRippleEffect();
-  
+
   if (hasSubmenu) {
     return (
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger 
+            <NavigationMenuTrigger
               className={cn(
                 "relative flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300",
-                "hover:bg-primary/10 hover:text-primary", 
+                "hover:bg-primary/10 hover:text-primary",
                 active ? "bg-primary/10 text-primary" : "text-foreground/80"
               )}
             >
@@ -58,12 +58,12 @@ const NavItem = ({ to, icon, label, active, onClick, hasSubmenu, children }: Nav
       </NavigationMenu>
     );
   }
-  
+
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Link 
-          to={to} 
+        <Link
+          to={to}
           className={cn(
             "relative flex items-center justify-center px-4 py-3 rounded-lg transition-all duration-300",
             "hover:bg-primary/10 hover:text-primary",
@@ -95,8 +95,8 @@ const NavItem = ({ to, icon, label, active, onClick, hasSubmenu, children }: Nav
 
 const SubMenuItem = ({ to, icon, label, active, onClick }: NavItemProps) => {
   return (
-    <Link 
-      to={to} 
+    <Link
+      to={to}
       className={cn(
         "flex items-center gap-2 p-2 rounded-md hover:bg-primary/10 hover:text-primary transition-all duration-300",
         active ? "bg-primary/10 text-primary" : ""
@@ -119,7 +119,7 @@ export const Navbar = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   // const { isAuthenticated, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
-  
+
   const handleOpenAuthModal = () => {
     setIsAuthModalOpen(true);
   };
@@ -137,8 +137,8 @@ export const Navbar = () => {
     { to: '/why', icon: <HelpCircle size={18} />, label: 'Why', id: 'why' },
     { to: '/how', icon: <Code size={18} />, label: 'How', id: 'how' },
   ];
-  
-  
+
+
 
   // const navItems = isAuthenticated ? authNavItems : [];
 
@@ -152,7 +152,7 @@ export const Navbar = () => {
               icon={<img src="/images/logo.png" alt="KRTRIM" className="w-5 h-5" />}
               label="KRTRIM"
               active={['what', 'why', 'how'].includes(active)}
-              onClick={() => {}}
+              onClick={() => { }}
               hasSubmenu={true}
             >
               {cortexSubmenu.map((item) => (
@@ -167,15 +167,15 @@ export const Navbar = () => {
               ))}
             </NavItem>
             <NavItem
-              to="/tool"
+              to="/wordpress"
               icon={<Code size={18} />}
-              label="Tools"
-              active={active === 'tools'}
-              onClick={() => handleNavItemClick('tools')}
+              label=" WordPress"
+              active={active === 'wordpress'}
+              onClick={() => handleNavItemClick('wordpress')}
             />
-            
-            
-            
+
+
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
@@ -191,25 +191,25 @@ export const Navbar = () => {
                 <p>Toggle {theme === 'dark' ? 'light' : 'dark'} mode</p>
               </TooltipContent>
             </Tooltip>
-            
-            
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-primary hover:text-primary-foreground"
-                    onClick={() => window.open('https://cal.com/krtrim/consultation', '_blank')}
-                  >
-                    Book Now
-                  </Button>
-                </TooltipTrigger>
-                
-              </Tooltip>
-            
+
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-primary hover:text-primary-foreground"
+                  onClick={() => window.open('https://cal.com/krtrim/consultation', '_blank')}
+                >
+                  Book Now
+                </Button>
+              </TooltipTrigger>
+
+            </Tooltip>
+
           </nav>
         </header>
       </TooltipProvider>
-      
+
     </>
   );
 };

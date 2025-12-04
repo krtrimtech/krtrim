@@ -64,7 +64,7 @@ export default function PluginCard({ plugin }: { plugin: any }) {
 
       <CardContent className="pt-0">
         {/* brief features or placeholder */}
-        <p className="text-sm text-muted-foreground">Easy to install. Per-user API keys. Gutenberg-native toolbar integration.</p>
+        <p className="text-sm text-muted-foreground">Easy to install.</p>
       </CardContent>
 
       <CardFooter className="pt-4">
