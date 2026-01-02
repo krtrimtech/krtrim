@@ -63,11 +63,11 @@ const knowledgeBase: Record<string, {
 }> = {
     services: {
         keywords: ['services', 'what do you do', 'offerings', 'products', 'solutions'],
-        response: "We offer three main services:\n\n🤖 **AI Chatbots** - Intelligent customer support that handles 90% of inquiries automatically\n\n🎤 **Voice Agents** - Natural voice AI for appointment booking and customer interactions\n\n💻 **Full-Stack SaaS Development** - Complete web applications with integrated AI features\n\nWould you like to know more about any specific service?"
+        response: "We offer three main services:\n\n🌐 **Web Development** - Custom websites and complex web applications tailored to your brand.\n\n🤖 **AI Solutions (Chat & Voice)** - Intelligent conversational AI for customer support, call handling, and more.\n\n💻 **Full-Stack SaaS Development** - Complete software applications with integrated AI features.\n\nWould you like to know more about any specific service?"
     },
     alphaTeam: {
-        keywords: ['alpha team', 'alpha', 'what is alpha team', 'about alpha team'],
-        response: "🔥 **Alpha Team** - Our AI Chatbot Specialists\n\nThe Alpha Team specializes in building intelligent chatbots that revolutionize customer support:\n\n• **Smart Automation** - Handle 90% of customer inquiries automatically\n• **Natural Conversations** - Advanced NLP for human-like interactions\n• **24/7 Support** - Never miss a customer query\n• **Easy Integration** - Seamless setup with your existing systems\n• **Analytics Dashboard** - Track performance and optimize responses\n\nPerfect for businesses looking to scale customer support efficiently!",
+        keywords: ['alpha team', 'alpha', 'what is alpha team', 'about alpha team', 'web development'],
+        response: "🌐 **Alpha Team** - Our Web Development Specialists\n\nThe Alpha Team specializes in crafting beautiful, high-performance websites and web applications:\n\n• **Responsive Design** - Perfect look and feel on all devices.\n• **Content Management Systems** - Easily manage your website content.\n• **E-commerce Solutions** - Robust online stores to drive sales.\n• **SEO Optimization** - Improve your visibility on search engines.\n\nPerfect for businesses needing a strong online presence!",
         buttons: [
             {
                 text: "📅 Book Alpha Team Consultation",
@@ -77,8 +77,8 @@ const knowledgeBase: Record<string, {
         ]
     },
     metaTeam: {
-        keywords: ['meta team', 'meta', 'what is meta team', 'about meta team'],
-        response: "🎤 **Meta Team** - Our Voice AI Specialists\n\nThe Meta Team creates natural voice agents that transform business communications:\n\n• **Voice Assistants** - Natural speech recognition and response\n• **Appointment Booking** - Automated scheduling with human-like conversations\n• **Call Center Automation** - Reduce call handling time by 70%\n• **Multi-language Support** - Serve customers in their preferred language\n• **Real-time Analytics** - Monitor call performance and customer satisfaction\n\nIdeal for businesses wanting to automate phone interactions!",
+        keywords: ['meta team', 'meta', 'what is meta team', 'about meta team', 'ai solutions', 'chatbot', 'voice'],
+        response: "🤖 **Meta Team** - Our AI Solutions Specialists\n\nThe Meta Team creates intelligent conversational AI for all your business needs:\n\n• **AI Chatbots** - Handle customer inquiries 24/7 with instant, accurate responses.\n• **Voice AI Agents** - Automate customer calls, appointments, and support with natural conversations.\n• **Custom Knowledge Base** - Train the AI on your specific business data.\n• **CRM Integration** - Seamlessly connect with your existing customer relationship tools.\n\nIdeal for businesses looking to automate and enhance customer interactions!",
         buttons: [
             {
                 text: "📅 Book Meta Team Consultation",
@@ -100,7 +100,7 @@ const knowledgeBase: Record<string, {
     },
     bookAlphaTeam: {
         keywords: ['book alpha team', 'schedule alpha team', 'alpha team consultation', 'alpha team meeting'],
-        response: "Great choice! The Alpha Team will help you build an intelligent chatbot solution. Let's schedule your consultation:",
+        response: "Great choice! The Alpha Team will help you build a stunning web presence. Let's schedule your consultation:",
         buttons: [
             {
                 text: "📅 Book Alpha Team Consultation",
@@ -111,7 +111,7 @@ const knowledgeBase: Record<string, {
     },
     bookMetaTeam: {
         keywords: ['book meta team', 'schedule meta team', 'meta team consultation', 'meta team meeting'],
-        response: "Excellent! The Meta Team will help you create powerful voice AI solutions. Let's get your consultation scheduled:",
+        response: "Excellent! The Meta Team will help you create powerful AI solutions for chat and voice. Let's get your consultation scheduled:",
         buttons: [
             {
                 text: "📅 Book Meta Team Consultation",

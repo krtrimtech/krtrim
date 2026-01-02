@@ -104,6 +104,15 @@
   }
 }
 
+/* Custom scrollbar hide utility */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
 .glass-panel {
   @apply backdrop-blur-md bg-card/80 border border-border/50 shadow-sm;
 }

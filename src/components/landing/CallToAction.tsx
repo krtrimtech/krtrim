@@ -16,8 +16,8 @@ export const CallToAction = ({
             Book Free Consultation
           </Button>
           
-          <Button size="lg" variant="outline" onClick={() => window.open('mailto:shyanu@krtrim.tech', '_blank')} className="rounded-full px-8 py-6 text-base font-medium bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground/10 transition-all duration-300">
-            Contact Us
+          <Button asChild size="lg" variant="outline" className="rounded-full px-8 py-6 text-base font-medium bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground/10 transition-all duration-300">
+            <a href="mailto:contact@krtrim.tech">Contact Us</a>
           </Button>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Moon, Sun, Info, HelpCircle, Code } from 'lucide-react';
 import { useRippleEffect } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -20,7 +20,7 @@ interface NavItemProps {
   icon: React.ReactNode;
   label: string;
   active: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   hasSubmenu?: boolean;
   children?: React.ReactNode;
 }
@@ -72,7 +72,7 @@ const NavItem = ({ to, icon, label, active, onClick, hasSubmenu, children }: Nav
           )}
           onClick={(e) => {
             handleRipple(e);
-            onClick();
+            onClick?.();
           }}
         >
           <span className={cn(
@@ -115,32 +115,31 @@ const SubMenuItem = ({ to, icon, label, active, onClick }: NavItemProps) => {
 };
 
 export const Navbar = () => {
-  const [active, setActive] = useState('what');
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  // const { isAuthenticated, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
 
-  const handleOpenAuthModal = () => {
-    setIsAuthModalOpen(true);
+  const getActiveItem = (pathname: string) => {
+    switch (pathname) {
+      case '/':
+        return 'what';
+      case '/why':
+        return 'why';
+      case '/how':
+        return 'how';
+      case '/wordpress':
+        return 'wordpress';
+      default:
+        return '';
+    }
   };
 
-  const handleCloseAuthModal = () => {
-    setIsAuthModalOpen(false);
-  };
-
-  const handleNavItemClick = (id: string) => {
-    setActive(id);
-  };
+  const activeItem = getActiveItem(location.pathname);
 
   const cortexSubmenu = [
     { to: '/', icon: <Info size={18} />, label: 'What', id: 'what' },
     { to: '/why', icon: <HelpCircle size={18} />, label: 'Why', id: 'why' },
     { to: '/how', icon: <Code size={18} />, label: 'How', id: 'how' },
   ];
-
-
-
-  // const navItems = isAuthenticated ? authNavItems : [];
 
   return (
     <>
@@ -151,8 +150,7 @@ export const Navbar = () => {
               to="#"
               icon={<img src="/images/logo.png" alt="KRTRIM" className="w-5 h-5" />}
               label="KRTRIM"
-              active={['what', 'why', 'how'].includes(active)}
-              onClick={() => { }}
+              active={['what', 'why', 'how'].includes(activeItem)}
               hasSubmenu={true}
             >
               {cortexSubmenu.map((item) => (
@@ -161,8 +159,7 @@ export const Navbar = () => {
                   to={item.to}
                   icon={item.icon}
                   label={item.label}
-                  active={active === item.id}
-                  onClick={() => handleNavItemClick(item.id)}
+                  active={activeItem === item.id}
                 />
               ))}
             </NavItem>
@@ -170,11 +167,8 @@ export const Navbar = () => {
               to="/wordpress"
               icon={<Code size={18} />}
               label=" WordPress"
-              active={active === 'wordpress'}
-              onClick={() => handleNavItemClick('wordpress')}
+              active={activeItem === 'wordpress'}
             />
-
-
 
             <Tooltip>
               <TooltipTrigger asChild>
@@ -192,7 +186,6 @@ export const Navbar = () => {
               </TooltipContent>
             </Tooltip>
 
-
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
@@ -203,13 +196,10 @@ export const Navbar = () => {
                   Book Now
                 </Button>
               </TooltipTrigger>
-
             </Tooltip>
-
           </nav>
         </header>
       </TooltipProvider>
-
     </>
   );
 };
